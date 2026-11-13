@@ -1,0 +1,8 @@
+{
+  "name": "RentTanzania",
+  "description": "The everything-for-hire marketplace for equipment, tools, machinery, and vehicles across Tanzania.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

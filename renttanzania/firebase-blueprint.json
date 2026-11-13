@@ -1,0 +1,413 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Stores user profile, displayName, role assignment, owner verification tier, and automatic Admin/Ops privileges in RENTZ.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Immutable Firebase Auth UID or unique user identifier.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full display name of the user.",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name synced from Firebase Authentication.",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Verified email address of the user.",
+          "minLength": 3,
+          "maxLength": 160
+        },
+        "phone": {
+          "type": "string",
+          "description": "Tanzanian contact phone number.",
+          "minLength": 3,
+          "maxLength": 60
+        },
+        "role": {
+          "type": "string",
+          "description": "Primary active portal role for the user.",
+          "enum": ["renter", "owner", "admin", "operations"]
+        },
+        "allowedRoles": {
+          "type": "array",
+          "description": "Bounded list of roles this user is authorized to switch between (up to 4).",
+          "maxLength": 4
+        },
+        "hasAdminOpsAccess": {
+          "type": "boolean",
+          "description": "True when the user is granted automatic Admin and Field Operations access."
+        },
+        "ownerTier": {
+          "type": "string",
+          "description": "Equipment owner commission tier (ordinary 25% vs verified 18%).",
+          "enum": ["ordinary", "verified"]
+        },
+        "verificationStatus": {
+          "type": "string",
+          "description": "KYC verification status.",
+          "enum": ["unverified", "pending", "verified", "rejected"]
+        },
+        "companyName": {
+          "type": "string",
+          "description": "Optional registered business or company name.",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the user record was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the user record was last updated."
+        }
+      },
+      "required": [
+        "uid",
+        "name",
+        "email",
+        "phone",
+        "role",
+        "allowedRoles",
+        "hasAdminOpsAccess",
+        "verificationStatus",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AdminGrant": {
+      "title": "AdminGrant",
+      "description": "Trusted role lookup record for Admin and Field Operations staff.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Admin user UID.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Admin verified email.",
+          "minLength": 3,
+          "maxLength": 160
+        },
+        "grantedRoles": {
+          "type": "array",
+          "description": "Granted staff roles (admin, operations).",
+          "maxLength": 4
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when admin access was recorded."
+        }
+      },
+      "required": ["uid", "email", "grantedRoles", "createdAt"]
+    },
+    "Listing": {
+      "title": "Listing",
+      "description": "Full RENTZ equipment listing stored in Firestore listings collection.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique equipment listing ID.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "description": "Equipment listing title.",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed equipment description.",
+          "minLength": 0,
+          "maxLength": 2000
+        },
+        "category": {
+          "type": "string",
+          "description": "Category ID or classification.",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "categoryId": {
+          "type": "string",
+          "description": "Category ID.",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "region": {
+          "type": "string",
+          "description": "Tanzania region/depot location.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "fleetTier": {
+          "type": "string",
+          "description": "Fleet tier (RENTZ Fleet, Verified Owner, or Ordinary Owner).",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "ownershipType": {
+          "type": "string",
+          "enum": ["company", "third_party"]
+        },
+        "serialNumber": {
+          "type": "string",
+          "description": "Equipment serial number.",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "dailyRate": {
+          "type": "number",
+          "description": "Daily rental rate in TSh."
+        },
+        "isAvailable": {
+          "type": "boolean",
+          "description": "Availability status for hire."
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "Owner user UID or ID.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerName": {
+          "type": "string",
+          "description": "Owner or company display name.",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the listing was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the listing was last updated."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "categoryId",
+        "region",
+        "fleetTier",
+        "ownershipType",
+        "dailyRate",
+        "isAvailable",
+        "ownerId",
+        "ownerName",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Full RENTZ quotation and booking record readable by customerId, ownerId, and users with the admin role.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique booking identifier.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "bookingId": {
+          "type": "string",
+          "description": "Booking ID matching document ID.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "bookingCode": {
+          "type": "string",
+          "description": "Human-readable RENTZ booking reference code.",
+          "minLength": 3,
+          "maxLength": 64
+        },
+        "listingId": {
+          "type": "string",
+          "description": "Booked equipment listing ID.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "assetId": {
+          "type": "string",
+          "description": "Referenced equipment asset ID.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "listingTitle": {
+          "type": "string",
+          "description": "Equipment listing title.",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "assetTitle": {
+          "type": "string",
+          "description": "Equipment title at time of booking.",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "customerId": {
+          "type": "string",
+          "description": "UID of the customer (renter) who created the booking.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "renterId": {
+          "type": "string",
+          "description": "Optional alias matching customerId for RENTZ compatibility.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Customer full name.",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "customerPhone": {
+          "type": "string",
+          "description": "Customer phone or WhatsApp number.",
+          "minLength": 3,
+          "maxLength": 60
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the equipment owner.",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Rental start date (YYYY-MM-DD).",
+          "minLength": 8,
+          "maxLength": 32
+        },
+        "returnDate": {
+          "type": "string",
+          "description": "Rental return date (YYYY-MM-DD).",
+          "minLength": 8,
+          "maxLength": 32
+        },
+        "endDate": {
+          "type": "string",
+          "description": "Rental end date (YYYY-MM-DD).",
+          "minLength": 8,
+          "maxLength": 32
+        },
+        "billingInterval": {
+          "type": "string",
+          "description": "Billing interval (hour, day, week, month).",
+          "enum": ["hour", "day", "week", "month"]
+        },
+        "status": {
+          "type": "string",
+          "description": "Current lifecycle status of the booking.",
+          "enum": [
+            "draft",
+            "pending",
+            "requested",
+            "awaiting_payment",
+            "confirmed",
+            "dispatched",
+            "ready_for_collection",
+            "active",
+            "return_due",
+            "under_inspection",
+            "completed",
+            "cancelled",
+            "disputed"
+          ]
+        },
+        "bookingStatus": {
+          "type": "string",
+          "description": "Booking status (pending, confirmed, dispatched, completed, cancelled).",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional booking notes.",
+          "minLength": 0,
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the booking was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the booking was last updated."
+        }
+      },
+      "required": [
+        "id",
+        "bookingCode",
+        "assetId",
+        "assetTitle",
+        "customerId",
+        "ownerId",
+        "startDate",
+        "endDate",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Main users collection storing user roles, profile details, and Admin/Ops access flags."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminGrant" },
+      "description": "Trusted admin & operations staff registry collection."
+    },
+    "/listings/{listingId}": {
+      "schema": { "$ref": "#/entities/Listing" },
+      "description": "Equipment listings collection publicly readable by anyone; writable by ownerId or admin."
+    },
+    "/bookings/{bookingId}": {
+      "schema": { "$ref": "#/entities/Booking" },
+      "description": "Equipment bookings collection readable and updatable by customerId, ownerId, and users with the admin role."
+    }
+  }
+}

@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe" />
+      <stop offset="65%" stop-color="#eff6ff" />
+      <stop offset="100%" stop-color="#44403c" />
+    </linearGradient>
+    <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#44403c" />
+      <stop offset="100%" stop-color="#1c1917" />
+    </linearGradient>
+    <linearGradient id="metalDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3f3f46" />
+      <stop offset="50%" stop-color="#27272a" />
+      <stop offset="100%" stop-color="#18181b" />
+    </linearGradient>
+    <linearGradient id="metalLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f4f4f5" />
+      <stop offset="50%" stop-color="#d4d4d8" />
+      <stop offset="100%" stop-color="#a1a1aa" />
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e4e4e7" />
+      <stop offset="40%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#a1a1aa" />
+      <stop offset="100%" stop-color="#f4f4f5" />
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.55" />
+      <stop offset="45%" stop-color="#0284c7" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.75" />
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="0.82" cy="0.18" r="0.55">
+      <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.65" />
+      <stop offset="50%" stop-color="#fde68a" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="floorShadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#09090b" stop-opacity="0.55" />
+      <stop offset="65%" stop-color="#09090b" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0" />
+    </radialGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#09090b" flood-opacity="0.38" />
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Realistic Environment Backdrop -->
+  <rect width="800" height="410" fill="url(#skyGrad)" />
+  <rect width="800" height="410" fill="url(#sunGlow)" />
+
+  <!-- Architectural Depot / Horizon Silhouette -->
+  <path d="M0 390 L0 335 L95 335 L125 310 L260 310 L260 355 L420 355 L445 325 L620 325 L640 355 L800 355 L800 410 Z" fill="#1e293b" opacity="0.16" />
+  <line x1="0" y1="390" x2="800" y2="390" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" />
+
+  <!-- Paved Depot / Site Ground Plane -->
+  <rect x="0" y="390" width="800" height="210" fill="url(#groundGrad)" />
+  <!-- Subtle perspective grid lines on depot floor -->
+  <g stroke="#ffffff" stroke-opacity="0.07" stroke-width="1">
+    <line x1="0" y1="430" x2="800" y2="430" />
+    <line x1="0" y1="480" x2="800" y2="480" />
+    <line x1="0" y1="540" x2="800" y2="540" />
+    <line x1="150" y1="390" x2="20" y2="600" />
+    <line x1="320" y1="390" x2="250" y2="600" />
+    <line x1="480" y1="390" x2="550" y2="600" />
+    <line x1="650" y1="390" x2="780" y2="600" />
+  </g>
+
+  <!-- Ambient Contact Shadow -->
+  <ellipse cx="400" cy="455" rx="285" ry="36" fill="url(#floorShadow)" />
+
+  <!-- Primary Realistic Equipment Illustration -->
+  <g filter="url(#dropShadow)">
+    
+      <!-- Front Steel Drum -->
+      <ellipse cx="235" cy="410" rx="68" ry="68" fill="url(#metalLight)" stroke="#52525b" stroke-width="8" />
+      <circle cx="235" cy="410" r="32" fill="#27272a" />
+      <circle cx="235" cy="410" r="14" fill="#facc15" />
+      <!-- Rear Steel Drum -->
+      <ellipse cx="555" cy="410" rx="68" ry="68" fill="url(#metalLight)" stroke="#52525b" stroke-width="8" />
+      <circle cx="555" cy="410" r="32" fill="#27272a" />
+      <circle cx="555" cy="410" r="14" fill="#facc15" />
+      <!-- Articulated Chassis Body -->
+      <path d="M195 360 L260 285 L540 285 L595 360 L595 405 L195 405 Z" fill="#facc15" stroke="#ca8a04" stroke-width="3" />
+      <rect x="215" y="370" width="90" height="45" rx="6" fill="#ca8a04" />
+      <rect x="495" y="370" width="90" height="45" rx="6" fill="#ca8a04" />
+      <!-- Engine Grille & Branding -->
+      <rect x="265" y="305" width="110" height="55" rx="6" fill="#27272a" />
+      <text x="282" y="338" fill="#facc15" font-family="system-ui, sans-serif" font-weight="900" font-size="20">BOMAG</text>
+      <!-- Operator Seat & Controls -->
+      <rect x="405" y="235" width="52" height="52" rx="8" fill="#18181b" />
+      <line x1="370" y1="285" x2="388" y2="235" stroke="#18181b" stroke-width="8" stroke-linecap="round" />
+      <ellipse cx="388" cy="232" rx="18" ry="6" fill="#27272a" />
+      <!-- ROPS Roll Bar & Amber Beacon -->
+      <path d="M465 285 L465 155 L525 155 L525 285" fill="none" stroke="#18181b" stroke-width="14" stroke-linejoin="round" />
+      <circle cx="495" cy="140" r="11" fill="#f97316" filter="url(#softGlow)" />
+    
+  </g>
+
+  <!-- Top Right Spec Plate -->
+  <g transform="translate(555, 22)">
+    <rect width="223" height="58" rx="10" fill="#0c0a09" fill-opacity="0.78" stroke="#ffffff" stroke-opacity="0.18" />
+    <text x="14" y="22" fill="#eab308" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" letter-spacing="1.2">CONSTRUCTION & PLANT</text>
+    <text x="14" y="40" fill="#ffffff" font-family="ui-monospace, monospace" font-size="12" font-weight="700">BOMAG BW 120 AD-5</text>
+    <text x="14" y="52" fill="#a8a29e" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">1,200mm Drum Width · Kubota 24.8kW Diesel</text>
+  </g>
+
+  <!-- Bottom Scrim for Contrast -->
+  <defs>
+    <linearGradient id="bottomScrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#09090b" stop-opacity="0" />
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0.72" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="490" width="800" height="110" fill="url(#bottomScrim)" />
+</svg>

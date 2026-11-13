@@ -1,0 +1,13 @@
+rules_version = '2';
+
+// RENTZ keeps all data in Firestore, but only the RENTZ server reads and writes it,
+// through the Firebase Admin SDK (which is not subject to these rules). Browsers use
+// Firebase only for Google sign-in and reach data through the RENTZ API, which checks
+// sessions, roles and ownership. So no client may touch the database directly.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

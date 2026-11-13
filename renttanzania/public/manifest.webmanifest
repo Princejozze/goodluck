@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "RENTZ — Everything-for-Hire Marketplace Tanzania",
+  "short_name": "RENTZ",
+  "description": "Hire construction machinery, farm tractors, generators, event gear, and vehicles across Tanzania. Free to book.",
+  "theme_color": "#b45309",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

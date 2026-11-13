@@ -1,0 +1,12 @@
+{
+  "firestore": [
+    {
+      "database": "ai-studio-renttanzania-2079fa69-f594-4194-b72a-9de59519c40d",
+      "rules": "firestore.rules"
+    }
+  ],
+  "emulators": {
+    "firestore": { "port": 8085 },
+    "ui": { "enabled": false }
+  }
+}

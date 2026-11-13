@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#bae6fd" />
+      <stop offset="65%" stop-color="#f0f9ff" />
+      <stop offset="100%" stop-color="#78716c" />
+    </linearGradient>
+    <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#78716c" />
+      <stop offset="100%" stop-color="#44403c" />
+    </linearGradient>
+    <linearGradient id="metalDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3f3f46" />
+      <stop offset="50%" stop-color="#27272a" />
+      <stop offset="100%" stop-color="#18181b" />
+    </linearGradient>
+    <linearGradient id="metalLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f4f4f5" />
+      <stop offset="50%" stop-color="#d4d4d8" />
+      <stop offset="100%" stop-color="#a1a1aa" />
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e4e4e7" />
+      <stop offset="40%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#a1a1aa" />
+      <stop offset="100%" stop-color="#f4f4f5" />
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.55" />
+      <stop offset="45%" stop-color="#0284c7" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.75" />
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="0.82" cy="0.18" r="0.55">
+      <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.65" />
+      <stop offset="50%" stop-color="#fde68a" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="floorShadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#09090b" stop-opacity="0.55" />
+      <stop offset="65%" stop-color="#09090b" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0" />
+    </radialGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#09090b" flood-opacity="0.38" />
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Realistic Environment Backdrop -->
+  <rect width="800" height="410" fill="url(#skyGrad)" />
+  <rect width="800" height="410" fill="url(#sunGlow)" />
+
+  <!-- Architectural Depot / Horizon Silhouette -->
+  <path d="M0 390 L0 335 L95 335 L125 310 L260 310 L260 355 L420 355 L445 325 L620 325 L640 355 L800 355 L800 410 Z" fill="#1e293b" opacity="0.16" />
+  <line x1="0" y1="390" x2="800" y2="390" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" />
+
+  <!-- Paved Depot / Site Ground Plane -->
+  <rect x="0" y="390" width="800" height="210" fill="url(#groundGrad)" />
+  <!-- Subtle perspective grid lines on depot floor -->
+  <g stroke="#ffffff" stroke-opacity="0.07" stroke-width="1">
+    <line x1="0" y1="430" x2="800" y2="430" />
+    <line x1="0" y1="480" x2="800" y2="480" />
+    <line x1="0" y1="540" x2="800" y2="540" />
+    <line x1="150" y1="390" x2="20" y2="600" />
+    <line x1="320" y1="390" x2="250" y2="600" />
+    <line x1="480" y1="390" x2="550" y2="600" />
+    <line x1="650" y1="390" x2="780" y2="600" />
+  </g>
+
+  <!-- Ambient Contact Shadow -->
+  <ellipse cx="400" cy="455" rx="285" ry="36" fill="url(#floorShadow)" />
+
+  <!-- Primary Realistic Equipment Illustration -->
+  <g filter="url(#dropShadow)">
+    
+      <!-- Heavy Aluminum & Yellow Survey Tripod -->
+      <line x1="385" y1="265" x2="265" y2="465" stroke="#facc15" stroke-width="12" stroke-linecap="round" />
+      <line x1="385" y1="265" x2="385" y2="475" stroke="#facc15" stroke-width="12" stroke-linecap="round" />
+      <line x1="385" y1="265" x2="505" y2="465" stroke="#facc15" stroke-width="12" stroke-linecap="round" />
+      <!-- Tribrach Base & Leica TS16 Head -->
+      <rect x="345" y="245" width="80" height="20" rx="4" fill="#18181b" />
+      <rect x="340" y="145" width="90" height="100" rx="12" fill="#eab308" stroke="#ca8a04" stroke-width="3" />
+      <!-- Telescope & EDM Objective Lens -->
+      <circle cx="385" cy="192" r="28" fill="#18181b" stroke="#52525b" stroke-width="4" />
+      <circle cx="385" cy="192" r="14" fill="url(#glass)" />
+      <!-- GNSS RTK Rover Pole & Prism (Right) -->
+      <line x1="565" y1="115" x2="565" y2="455" stroke="#ef4444" stroke-width="7" />
+      <line x1="565" y1="185" x2="565" y2="255" stroke="#ffffff" stroke-width="7" />
+      <circle cx="565" cy="110" r="22" fill="#f8fafc" stroke="#64748b" stroke-width="3" />
+      <!-- Rugged CS20 Field Controller on Pole -->
+      <rect x="572" y="265" width="44" height="32" rx="4" fill="#18181b" stroke="#eab308" stroke-width="2" />
+    
+  </g>
+
+  <!-- Top Right Spec Plate -->
+  <g transform="translate(555, 22)">
+    <rect width="223" height="58" rx="10" fill="#0c0a09" fill-opacity="0.78" stroke="#ffffff" stroke-opacity="0.18" />
+    <text x="14" y="22" fill="#eab308" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" letter-spacing="1.2">SPECIALIZED & INDUSTRIAL</text>
+    <text x="14" y="40" fill="#ffffff" font-family="ui-monospace, monospace" font-size="12" font-weight="700">LEICA VIVA TS16 1" R1000</text>
+    <text x="14" y="52" fill="#a8a29e" font-family="system-ui, -apple-system, sans-serif" font-size="9.5">1" Angular Accuracy · 1,000m Prismless + Tripod</text>
+  </g>
+
+  <!-- Bottom Scrim for Contrast -->
+  <defs>
+    <linearGradient id="bottomScrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#09090b" stop-opacity="0" />
+      <stop offset="100%" stop-color="#09090b" stop-opacity="0.72" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="490" width="800" height="110" fill="url(#bottomScrim)" />
+</svg>
